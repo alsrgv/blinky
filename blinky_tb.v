@@ -2,7 +2,7 @@
 
 `define assert(signal, value) \
     if (signal !== value) begin \
-        $display("ASSERTION FAILED: %0d != %0d", signal, value); \
+        $display("ASSERTION FAILED: signal (%0d) != value (%0d)", signal, value); \
 	$finish; \
     end
 
@@ -11,6 +11,7 @@ module blinky_tb;
 reg clk;
 wire led;
 
+// blinking at 1000 hz
 blinky #(1000) b (
     .clk (clk),
     .led (led)
@@ -24,11 +25,11 @@ always
 
 initial
 begin
-    #0 `assert(led, 0);
-    #500000 `assert(led, 1);
-    #500000 `assert(led, 0);
-    #500000 `assert(led, 1);
-    #500000 `assert(led, 0);
+    repeat (10) begin
+      // on for 100 us, off for 900 us
+      repeat (100) #1000 `assert(led, 1);
+      repeat (900) #1000 `assert(led, 0);
+    end
     $finish;
 end
 

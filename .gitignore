@@ -5,3 +5,4 @@
 *.bit
 xsim.dir
 .Xil
+usage_statistics_webtalk.*

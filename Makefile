@@ -13,8 +13,8 @@ sim: blinky_tb.wdb
 test: blinky_tb.wdb
 	xsim blinky_tb -R
 
-deploy:
+deploy: blinky.bit
 	vivado -mode batch -source deploy.tcl -verbose -nojournal
 
 clean:
-	rm -rf *.log *.jou *.pb *.wdb *.bit xsim.dir
+	rm -rf *.log *.jou *.pb *.wdb *.bit xsim.dir usage_statistics_webtalk.*
