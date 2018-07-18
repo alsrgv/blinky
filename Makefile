@@ -12,6 +12,7 @@ sim: blinky_tb.wdb
 
 test: blinky_tb.wdb
 	xsim blinky_tb -R
+	@if grep "Fatal:" xsim.log >/dev/null; then exit 1; fi
 
 deploy: blinky.bit
 	vivado -mode batch -source deploy.tcl -verbose -nojournal

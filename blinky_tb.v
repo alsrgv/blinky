@@ -2,8 +2,7 @@
 
 `define assert(signal, value) \
     if (signal !== value) begin \
-        $display("ASSERTION FAILED: signal (%0d) != value (%0d)", signal, value); \
-	$finish; \
+        $fatal(1, "ASSERTION FAILED: signal (%0d) != value (%0d)", signal, value); \
     end
 
 module blinky_tb;
